@@ -161,7 +161,7 @@ let items = {
     ],
 }
 
-
+//Es la vista cuando un usuario selecciona un objeto
 let itemDisplay = new ItemDisplay(null,null,null);
 
 //c - Container ; cItems - container Items;
@@ -180,8 +180,6 @@ for(let i = 0; i<items.item.length; i++){
 
     cNewItem.appendChild(newImg);
     cItems.appendChild(cNewItem);
-
-    //console.log(items.item[i].name);
 }
 
 
@@ -296,6 +294,7 @@ function showItem(itemId){
     }
 
     //BACKEND
+    //PASAMOS LOS VALORES NECESARIO PARA CUANDO SE REALICE UNA COMPRA
     itemDisplay.setArgs(idItem,items.item[idItem].name,items.item[idItem].price,items.item[idItem].coinType);
 }
 

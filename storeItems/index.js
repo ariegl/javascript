@@ -73,7 +73,7 @@ let items = {
         {
             id: 1,
             name: "Araña Gelatinosa",
-            description: "Consigue esta araña gelatinosa, excelente para decorar tus islas de Halloween!",
+            description: "Consigue esta araña gelatinosa, excelente para decorar tus islas de Halloween! 🕷️",
             price: 2000,
             coinType: "gold",
             image: "arana.png",
@@ -81,7 +81,7 @@ let items = {
         {
             id: 2,
             name: "Egg Bohemio",
-            description: "Consigue este increible huevo artista de pascua!",
+            description: "Consigue este increible huevo artista de pascua! 🎨",
             price: 5000,
             coinType: "gold",
             image: "bohemio_by_ariel.png",
@@ -89,7 +89,7 @@ let items = {
         {
             id: 3,
             name: "Coldman",
-            description: "Consigue este asombroso hombre de hielo!",
+            description: "Consigue este asombroso hombre de hielo y decora tus islas con un toque friolento! 🥶",
             price: 2500,
             coinType: "gold",
             image: "coldman_by_ariel.png",
@@ -97,7 +97,7 @@ let items = {
         {
             id: 4,
             name: "Egg Nuwa",
-            description: "Consigue este huevo bañado en bronce y con una increible estrella!",
+            description: "Consigue este increible huevo bañado en bronce y con una increible estrella! ⭐",
             price: 8000,
             coinType: "silver",
             image: "nuwa_by_ariel.png",
@@ -105,10 +105,58 @@ let items = {
         {
             id: 5,
             name: "Octopus",
-            description: "Consigue este tierno y dulce pulpo, capaz de conmover a todo le que lo vea!",
+            description: "Consigue este tierno y dulce pulpo, capaz de conmover a todo le que lo vea! 🐙",
             price: 3000,
             coinType: "gold",
             image: "pulpo_high_quality_by_ariel.png",
+        },
+        {
+            id: 6,
+            name: "Love Tree",
+            description: "Consigue este arbol de sanvalentin que ademas funciona como un teletransportador! 💖",
+            price: 1000,
+            coinType: "gold",
+            image: "lovetree.png",
+        },
+        {
+            id: 7,
+            name: "Egg Music Cholo",
+            description: "Consigue este asombroso huevo reproductor de musica, cada uno contiene canciones diferentes! 🎵",
+            price: 5000,
+            coinType: "silver",
+            image: "egg_music_cholo_by_ariel.png",
+        },
+        {
+            id: 8,
+            name: "Egg Music Jaguar",
+            description: "Consigue este huevo reproductor de musica, cada uno contiene canciones diferentes!",
+            price: 5000,
+            coinType: "silver",
+            image: "egg_music_jaguar_by_ariel.png",
+        },
+        {
+            id: 9,
+            name: "Ghost",
+            description: "Consigue este increible fantasma y espanta a todo el que entre a tu isla! 👻",
+            price: 1500,
+            coinType: "gold",
+            image: "ghost_1_by_ariel.png",
+        },
+        {
+            id: 10,
+            name: "Frankling Egg",
+            description: "Consigue este increible huevo electromecanico que funciona como una bobina de tesla! ⚡",
+            price: 8000,
+            coinType: "gold",
+            image: "FRANKLING_EGG_by_ariel.png",
+        },
+        {
+            id: 11,
+            name: "Sea Egg",
+            description: "Consigue este increible huevo que se ha infestado de diferentes criaturas marinas durante todo es tiempo! 🌊",
+            price: 5000,
+            coinType: "gold",
+            image: "sea_egg_by_ariel.png",
         },
     ],
 }
@@ -233,6 +281,19 @@ function showItem(itemId){
 
     items.item[idItem].coinType == "gold" ? mainLblPrice.classList.add("bg-yellow-300") : mainLblPrice.classList.add("bg-gray-400");
 
+    const titleItem = document.querySelector("#displayItemName");
+    titleItem.innerHTML = items.item[idItem].name;
+
+    if (titleItem.classList.contains("invisible")){
+        titleItem.classList.remove("invisible");
+    }
+
+    const infoItem = document.querySelector("#displayInfoItem");
+    infoItem.innerHTML = items.item[idItem].description;
+
+    if (infoItem.classList.contains("invisible")){
+        infoItem.classList.remove("invisible");
+    }
 
     //BACKEND
     itemDisplay.setArgs(idItem,items.item[idItem].name,items.item[idItem].price,items.item[idItem].coinType);

@@ -34,6 +34,22 @@
     flex-wrap:wrap;
 }
 
+.centerAllelements{
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+
+.startAllElements{
+    display: flex;
+    justify-content:flex-start;
+    align-content:center;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+
 .centerItems{
     display: flex;
     justify-content:center;

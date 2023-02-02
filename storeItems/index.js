@@ -13,6 +13,59 @@ class User {
     setItem(item){
         this.items.push(item);
     }
+
+    getUserCoins(){
+        return [this.goldCoins,this.silverCoins];
+    }
+
+    setUserCoins(newGoldCoins,newSilverCoins){
+        this.goldCoins = newGoldCoins;
+        this.silverCoins = newSilverCoins;
+    }
+}
+
+class ItemDisplay {
+    constructor(id,name,price,coinType){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.coinType = coinType;
+    }
+
+    getVals(){
+        return [this.id,this.name,this.price,this.coinType];
+    }
+
+    getPrice(){
+        return this.price;
+    }
+
+    getName(){
+        return this.name;
+    }
+
+    getCoinType(){
+        return this.coinType;
+    }
+
+    setArgs(id,name,price,coinType){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.coinType = coinType
+    }
+
+    setId(id){
+        this.id = id;
+    }
+
+    setName(name){
+        this.name = name;
+    }
+
+    setPrice(price){
+        this.price = price;
+    }
 }
 
 let items = {
@@ -61,6 +114,8 @@ let items = {
 }
 
 
+let itemDisplay = new ItemDisplay(null,null,null);
+
 //c - Container ; cItems - container Items;
 const cItems = document.querySelector("#itemsMain");
 
@@ -89,6 +144,8 @@ window.addEventListener("load",function(){
 
     const item = document.querySelectorAll(".item");
 
+    const btnBuy = document.querySelector("#btnBuy");
+
     item.forEach(element => {
         element.addEventListener("click",(e) => {
 
@@ -116,12 +173,71 @@ window.addEventListener("load",function(){
         });
     });
 
+    btnBuy.addEventListener("click",function(){
+        const credits = user.getUserCoins();
+        const goldCoins = credits[0];
+        const silverCoins = credits[1];
+
+        let compra = false;
+
+        if(itemDisplay.getCoinType() == "gold"){
+            if(goldCoins < itemDisplay.getPrice()){
+                alert("No te alcanza papi");
+            }else{
+                alert("Has comprado con oro " + itemDisplay.getName());
+                compra = true;
+            }
+        }else{
+            if(silverCoins < itemDisplay.getPrice()){
+                alert("Tas pobre mijo");
+            }else{
+                alert("Has comprado " + itemDisplay.getName());
+                compra = true;
+
+            }
+        }
+
+
+        //ACTUALIZAMOS LOS CREDITOS DEL USUARIO
+        if(compra){
+            if(itemDisplay.getCoinType() == "gold"){
+                let newGoldCoins = goldCoins - itemDisplay.getPrice();
+                user.setUserCoins(newGoldCoins,silverCoins);
+            }else {
+                let newSilverCoins = silverCoins - itemDisplay.getPrice();
+                user.setUserCoins(goldCoins,newSilverCoins);
+            }
+        }
+
+
+        alert(goldCoins+" : "+silverCoins);
+    })
+
 });
 
 function showItem(itemId){
+
+    const idItem = itemId - 1;
+
+    //FRONT VIEW
     let imgItemSelected = document.querySelector("#itemSelected");
-    imgItemSelected.src = `./img/${items.item[itemId-1].image}`;
+    imgItemSelected.src = `./img/${items.item[idItem].image}`;
 
     const lblPrice = document.querySelector("#lblPrice");
-    lblPrice.innerHTML = items.item[itemId-1].price;
+    lblPrice.innerHTML = items.item[idItem].price;
+
+    const mainLblPrice = document.querySelector("#mainLblPrice");
+
+    mainLblPrice.classList.contains("bg-yellow-300") ? mainLblPrice.classList.remove("bg-yellow-300") : false;
+    mainLblPrice.classList.contains("bg-gray-400") ? mainLblPrice.classList.remove("bg-gray-400") : false;
+
+    items.item[idItem].coinType == "gold" ? mainLblPrice.classList.add("bg-yellow-300") : mainLblPrice.classList.add("bg-gray-400");
+
+
+    //BACKEND
+    itemDisplay.setArgs(idItem,items.item[idItem].name,items.item[idItem].price,items.item[idItem].coinType);
+}
+
+function buyItem(itemId, user){
+
 }

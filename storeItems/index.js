@@ -158,6 +158,30 @@ let items = {
             coinType: "gold",
             image: "sea_egg_by_ariel.png",
         },
+        {
+            id: 12,
+            name: "Dino Lee",
+            description: "Consigue este increible dinosaurio que ademas es un experto en las artes marciales! 🦖",
+            price: 3000,
+            coinType: "gold",
+            image: "DinoLee_by_ariel.png",
+        },
+        {
+            id: 13,
+            name: "Egg Dissey",
+            description: "Consigue este increible huevo a punto de convertirse! 🐥",
+            price: 10000,
+            coinType: "gold",
+            image: "Egg_dissey_by_ariel.png",
+        },
+        {
+            id: 14,
+            name: "Raregalo",
+            description: "Consigue este increible regalo, abrelo y mira que contiene, puedes encontrar hasta 5 objetos raros! 🎁",
+            price: 7000,
+            coinType: "gold",
+            image: "Raregalo_by_ariel.png",
+        },
     ],
 }
 

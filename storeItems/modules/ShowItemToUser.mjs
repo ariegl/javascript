@@ -74,6 +74,8 @@ function loadItems(){
 /*SE ENCARGA DE MOSTRAR AL USUARIO EL ITEM 
 QUE HA SELECCIONADO PARA VER SUS CARACTERISTICAS*/
 function showItemInDisplay(itemDisplay,itemId){
+    //CATEGORIAS DISPONIBLES
+    const itemCategoryClass = ["Normal","Rare","Muyrare","Casiunico","Unico"];
 
     const idItem = itemId - 1;
 
@@ -94,14 +96,32 @@ function showItemInDisplay(itemDisplay,itemId){
     const titleItem = document.querySelector("#displayItemName");
     titleItem.innerHTML = items.item[idItem].name;
 
-    if (titleItem.classList.contains("invisible")){
-        titleItem.classList.remove("invisible");
-    }
+
+    //BADGE CON LA CATEGORIA DEL OBJETO
+    const itemType = document.querySelector("#displayItemType");
+
+    itemCategoryClass.forEach(element => {
+        if (itemType.classList.contains(`type${element}`)){
+            itemType.classList.remove(`type${element}`);
+        }
+    })
+
+    itemType.innerHTML = items.item[idItem].itemType;
+    itemType.classList.add(`type${items.item[idItem].itemType.replace(" ","")}`);
+
+
 
     const infoItem = document.querySelector("#displayInfoItem");
     infoItem.innerHTML = items.item[idItem].description;
 
-    if (infoItem.classList.contains("invisible")){
+    const alertNotificationBuy = document.querySelector("#alertNotificationBuy");
+    alertNotificationBuy.classList.contains("invisible") ? true : alertNotificationBuy.classList.add("invisible");
+
+
+    //VISIBLE POR PRIMERA VEZ
+    if (titleItem.classList.contains("invisible")){
+        titleItem.classList.remove("invisible");
+        itemType.classList.remove("invisible");
         infoItem.classList.remove("invisible");
     }
 

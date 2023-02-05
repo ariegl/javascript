@@ -12,16 +12,16 @@ loadItems();
 
 window.addEventListener("load",function(){
     const username = prompt("Ingresa tu nombre de usuario","Ariel");
-
     const user = new User(username,25000,15000);
 
     const item = document.querySelectorAll(".item");
-
     const btnBuy = document.querySelector("#btnBuy");
 
     item.forEach(element => {
         element.addEventListener("click",(e) => {
 
+
+            /*QUITAMOS EL EFECTO SELECCIONADO AL ITEM ANTERIOR*/
             const itemActive = document.querySelectorAll(".itemNow");
 
             itemActive.forEach(element => {

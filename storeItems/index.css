@@ -87,3 +87,37 @@
 #btnBuy:hover{
     background-color: #199346;
 }
+
+#displayItemType{
+    color: #fff;
+}
+
+.typeNormal{
+    background-color:#9ca3af;
+}
+
+.typeRare{
+    background-color:#3bfa74;
+}
+
+.typeMuyrare{
+    background-color:#005eff;
+}
+
+.typeCasiunico{
+    background-color:#6e0099;
+}
+
+.typeUnico{
+    background-color:#fde047;
+}
+
+.alertSuccess{
+    background-color:#22c55e;
+    color:white;
+}
+
+.alertDanger{
+    background-color:#ff3628;
+    color:white;
+}

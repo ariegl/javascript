@@ -7,6 +7,7 @@ let items = {
             price: 2000,
             coinType: "gold",
             image: "arana.png",
+            itemType: "Rare",
         },
         {
             id: 2,
@@ -15,6 +16,7 @@ let items = {
             price: 5000,
             coinType: "gold",
             image: "bohemio_by_ariel.png",
+            itemType: "Casi unico",
         },
         {
             id: 3,
@@ -23,6 +25,7 @@ let items = {
             price: 2500,
             coinType: "gold",
             image: "coldman_by_ariel.png",
+            itemType: "Normal",
         },
         {
             id: 4,
@@ -31,6 +34,7 @@ let items = {
             price: 8000,
             coinType: "silver",
             image: "nuwa_by_ariel.png",
+            itemType: "Muy rare",
         },
         {
             id: 5,
@@ -39,6 +43,7 @@ let items = {
             price: 3000,
             coinType: "gold",
             image: "pulpo_high_quality_by_ariel.png",
+            itemType: "Rare",
         },
         {
             id: 6,
@@ -47,6 +52,7 @@ let items = {
             price: 1000,
             coinType: "gold",
             image: "lovetree.png",
+            itemType: "Normal",
         },
         {
             id: 7,
@@ -55,6 +61,7 @@ let items = {
             price: 5000,
             coinType: "silver",
             image: "egg_music_cholo_by_ariel.png",
+            itemType: "Normal",
         },
         {
             id: 8,
@@ -63,6 +70,7 @@ let items = {
             price: 5000,
             coinType: "silver",
             image: "egg_music_jaguar_by_ariel.png",
+            itemType: "Normal",
         },
         {
             id: 9,
@@ -71,6 +79,7 @@ let items = {
             price: 1500,
             coinType: "gold",
             image: "ghost_1_by_ariel.png",
+            itemType: "Rare",
         },
         {
             id: 10,
@@ -79,6 +88,7 @@ let items = {
             price: 8000,
             coinType: "gold",
             image: "FRANKLING_EGG_by_ariel.png",
+            itemType: "Unico",
         },
         {
             id: 11,
@@ -87,6 +97,7 @@ let items = {
             price: 5000,
             coinType: "gold",
             image: "sea_egg_by_ariel.png",
+            itemType: "Rare",
         },
         {
             id: 12,
@@ -95,6 +106,7 @@ let items = {
             price: 3000,
             coinType: "gold",
             image: "DinoLee_by_ariel.png",
+            itemType: "Muy rare",
         },
         {
             id: 13,
@@ -103,6 +115,7 @@ let items = {
             price: 10000,
             coinType: "gold",
             image: "Egg_dissey_by_ariel.png",
+            itemType: "Casi unico",
         },
         {
             id: 14,
@@ -111,6 +124,7 @@ let items = {
             price: 7000,
             coinType: "gold",
             image: "Raregalo_by_ariel.png",
+            itemType: "Rare",
         },
     ],
 }

@@ -19,23 +19,8 @@ function buyItem(user,itemDisplay){
         let compra = false;
         let message = "";
 
-        if(itemDisplay.getCoinType() == "gold"){
-            if(goldCoins < itemDisplay.getPrice()){
-                //alert("No te alcanza papi");
-            }else{
-                //alert("Has comprado con oro " + itemDisplay.getName());
-                compra = true;
-            }
-        }else{
-            if(silverCoins < itemDisplay.getPrice()){
-                //alert("Tas pobre mijo" + " gold:" + goldCoins + " silver:" + silverCoins);
-                
-            }else{
-                //alert("Has comprado " + itemDisplay.getName());
-                compra = true;
-            }
-        }
-
+        if(itemDisplay.getCoinType() == "gold" && goldCoins >= itemDisplay.getPrice()) compra = true;
+        else if(itemDisplay.getCoinType() == "silver" && silverCoins >= itemDisplay.getPrice()) compra = true;
 
         //ACTUALIZAMOS LOS CREDITOS DEL USUARIO
         if(compra){

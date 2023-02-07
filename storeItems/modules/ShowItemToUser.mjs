@@ -59,6 +59,14 @@ function loadItems(){
         cNewItem.id = `itemCatalog-${items.item[i].id}`;
         cNewItem.className = "item centerAll";
 
+        if((i % 4) == 0 || i == 0){
+            cNewItem.className += " ml-4 mr-4";
+        }else{
+            cNewItem.className += " ml-2 mr-2";
+        }
+
+        cNewItem.className += " mt-4";
+
         const newImg = new Image();
         newImg.className = "imgItem";
         newImg.src = `./img/${items.item[i].image}`;

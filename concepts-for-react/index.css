@@ -1,5 +1,13 @@
 body {
     background: #202020;
     color:white;
+    height:100vh;
 }
 
+.centerAll {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}

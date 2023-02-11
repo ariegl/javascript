@@ -12,8 +12,10 @@ const skinButton = {
     margin: '0px 10px',
 }
 
+const isAuthorized = true;
+
 myButton.style = `
-    background: ${skinButton.background};
+    background: ${isAuthorized ? skinButton.background : 'red'};
     color: ${skinButton.color};
     weight: ${skinButton.weight};
     border: ${skinButton.border};

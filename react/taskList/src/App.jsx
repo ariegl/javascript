@@ -7,7 +7,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
+    <div className="App container w-screen min-w-full min-h-screen bg-black flex justify-center items-center">
       <TodoApp/>
     </div>
   )

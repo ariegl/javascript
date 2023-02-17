@@ -10,6 +10,7 @@ export function EmojiPicker(props, inputRef) {
   const [emojis, setEmojis] = useState(emojiList);
 
   const containerRef = useRef(null);
+  const buttonEmoji = useRef(null);
 
   useEffect(() => {
       window.addEventListener("click", function(e){
@@ -45,6 +46,7 @@ export function EmojiPicker(props, inputRef) {
   function handleClickOpen() {
     setIsOpen(!isOpen);
     inputRef.current.focus();
+    buttonEmoji.current.innerText = "😄"
   }
 
   function handleOnClickEmoji(emoji) {
@@ -61,13 +63,13 @@ export function EmojiPicker(props, inputRef) {
   }
 
   return (
-    <div ref={containerRef}>
-      <button onClick={handleClickOpen}>😃</button>
+    <div className="flex justify-center items-center flex-wrap" ref={containerRef}>
+      <div className="w-full flex justify-center mt-8"><button ref={buttonEmoji} className={`rounded-2xl text-3xl p-2 ${!!isOpen ? 'bg-gray-400' : 'bg-gray-700'}`} onClick={handleClickOpen}>🙂</button></div>
 
       {isOpen ? (
-        <div>
+        <div className="w-full flex justify-center mt-8 flex-wrap">
           <EmojiSearch onSearch={handleSearch} />
-          <div>
+          <div className="w-full flex justify-center mt-5">
             {emojis.map((emoji) => (
               <EmojiButton key={emoji.symbol} emoji={emoji} onClick={handleOnClickEmoji} />
             ))}

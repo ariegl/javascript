@@ -5,6 +5,6 @@ export default function EmojiButton({emoji, onClick}) {
     }
 
     return(
-        <button onClick={handleClick}>{emoji.symbol}</button>
+        <button className="text-xl" onClick={handleClick}>{emoji.symbol}</button>
     )
 }

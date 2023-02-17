@@ -10,6 +10,6 @@ export default function EmojiSearch({onSearch}) {
     }
 
     return(
-        <input type="text" onChange={handleChange} value={value}></input>
+        <input className="rounded-xl pl-4 bg-gray-800 py-0.5" type="text" onChange={handleChange} placeholder="Buscador de emojis" value={value}></input>
     )
 }

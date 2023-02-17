@@ -10,8 +10,9 @@ export default function EmojiPickerInput() {
     }
 
     return(
-        <div>
-            <input ref={refInput} type="text" />
+        <div className="flex justify-center items-center flex-wrap">
+            <span className="text-yellow-400 font-bold text-6xl w-full text-center py-8">Emoji<span className="text-white px-4">Picker</span></span>
+            <div className="w-full flex justify-center"><input className="w-2/5 rounded-2xl pl-5 py-2 font-bold " ref={refInput} type="text" /></div>
             <EmojiPicker ref={refInput}/>
         </div>
     )

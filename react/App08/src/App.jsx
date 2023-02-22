@@ -10,14 +10,14 @@ function App() {
   function handleClick() {
     setIsActive(!isActive);
     
-    alert.show("Oh look, an alert!");
+    alert.show(<div className="text-3xl">Some Message</div>);
   }
 
   return (
     <div className="App grid grid-cols-1 min-h-screen">
       <div className="flex justify-center items-center">
         <button
-          className="bg-green-300 p-4 m-3 font-bold"
+          className={`${isActive ? 'bg-green-300' : 'bg-gray-300'} p-4 m-3 font-bold`}
           onClick={handleClick}
         >
           Show Alert

@@ -1,0 +1,52 @@
+#containerItems img {
+    width:auto;
+    height:200px;
+    cursor:move;
+    transition:all 0.3s ease;
+}
+
+#containerItems img:hover{
+    transform:scale(1.2);
+}
+
+.box{
+    width: 400px;
+    height: 500px;
+    background-color: rgb(170,170,170);
+    border-radius:10px;
+}
+
+.box img{
+    max-height:100%;
+    max-width:100%;
+    margin:auto;
+}
+
+.visorOcupped{
+    background-color: rgb(240,240,240);
+}
+
+.borderGlow{
+    border-radius:10px;
+}
+
+.glowOn, .glowOn{
+    background: linear-gradient(-90deg, #00ff66, #00ffff, #ff00ff, #ff0099, #099fff); 
+    animation: change 20s linear infinite;
+}
+
+.glowOff{
+    background: #fff;
+}
+
+@keyframes change{
+    0%{
+        background-position: 0px 0px;
+    }
+    50%{
+        background-position: 420px 500px;
+    }
+    100%{
+        background-position: 0px 0px;
+    }
+}

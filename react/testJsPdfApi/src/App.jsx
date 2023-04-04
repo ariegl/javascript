@@ -1,9 +1,7 @@
 import { useState, useRef } from 'react'
-import Render from "react-dom/server"
 import './App.css'
-import {jsPDF} from "jspdf";
 import TemplateDocument from "./services/TemplateDocument"
-import html2canvas from "html2canvas"
+
 
 function App() {
   const templatePDF = useRef();

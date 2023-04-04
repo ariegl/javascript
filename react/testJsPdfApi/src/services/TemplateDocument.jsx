@@ -2,7 +2,6 @@ import React, {useRef, useImperativeHandle } from 'react'
 import logo from "../assets/logoMunicipioCircle.jpg"
 import html2canvas from "html2canvas"
 import {jsPDF} from "jspdf";
-import Render from "react-dom/server"
 
 
 function TemplateDocument(props , ref) {
@@ -10,7 +9,6 @@ function TemplateDocument(props , ref) {
     const myDiv = useRef(null)
 
     function generatePdf () {
-        console.log("ENTRASE");
         let data = myDiv.current;
         let doc = new jsPDF("landscape", "pt", "a4");
 
@@ -27,7 +25,7 @@ function TemplateDocument(props , ref) {
     }));
 
   return (
-    <div ref={myDiv} style={{width: '1130px', height: '877'}} className='text-black bg-white grid grid-cols-12 p-3 px-10 py-10'>
+    <div ref={myDiv} style={{width: '1130px', height: '800px', minWidth: '1130px', minHeight:'800px'}} className='text-black bg-white grid grid-cols-12 p-3 px-10 py-10'>
         <div className='col-span-12' id="header">
             <h1 className='text-5xl font-bold text-center m-1'>Preview Document</h1>
         </div>

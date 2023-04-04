@@ -9,7 +9,7 @@ import Login from "./components/Login.jsx";
 function App() {
 
   return (
-    <div className="App bg-yellow-200 h-screen flex justify-center items-start flex-wrap">
+    <div className="App bg-gray-300 h-screen flex justify-center items-start flex-wrap">
       <nav className='w-full bg-blue-300 flex justify-start'>
         <ul className='flex ml-10 py-5 font-bold'>
           <li className=''>

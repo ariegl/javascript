@@ -1,23 +1,6 @@
 {
     "website":{
-        "images":{
-            "page":{
-                "ChooseCharacter":{
-                    "GridCharacter":{
-                        "Character":{
-                            "Rasta": "/assets/rasta/face_icon.svg",
-                            "Dj": "Dj.JPG"
-                        }
-                    },
-                    "ViewCharacter":{
-                        "Character":{
-                            "Rasta": "Rasta.JPG",
-                            "Dj": "Dj.JPG"
-                        }
-                    }
-                }
-            }
-        }
+        "folderLoaderGridCharacters": "../assets/pages/chooseCharacter/gridCharacter/*.svg"
     },
     "game":{
 

@@ -1,6 +1,6 @@
 {
     "website":{
-        "folderLoaderGridCharacters": "../assets/pages/chooseCharacter/gridCharacter/*.svg"
+        "folderLoaderGridCharacters": "./assets/pages/chooseCharacter/gridCharacter/*.svg"
     },
     "game":{
 

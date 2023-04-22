@@ -1,0 +1,52 @@
+{
+  "personaje": {
+    "dj": {
+      "render": {
+        "cabello": "cabello",
+        "piel": "piel",
+        "camisa": "camisa",
+        "pantalones": "pantalones",
+        "audifonos": "audifonos"
+      },
+      "colors": {
+        "cabello": "gray",
+        "piel": "#f1d695",
+        "camisa": "#4a412c",
+        "pantalones": "#70706e",
+        "audifonos": "#a33535"
+      }
+    },
+    "rasta": {
+      "render": {
+        "cabello": "cabello",
+        "piel": "piel",
+        "cinta": "cinta",
+        "ojos": "ojos"
+      },
+      "colors": {
+        "cabello": "#fd9a04",
+        "piel": "#b28251",
+        "cinta": "#0295c7",
+        "ojos": "#053061"
+      }
+    },
+    "gata": {
+      "render": {
+        "cabello": "cabello",
+        "piel": "piel",
+        "orejas": "orejas",
+        "cuello": "cuello",
+        "botonGrande": "botonGrande",
+        "botonChico": "botonChico"
+      },
+      "colors": {
+        "cabello": "black",
+        "piel": "#ECDEC2",
+        "orejas": "pink",
+        "cuello": "pink",
+        "botonGrande": "white",
+        "botonChico": "red"
+      }
+    }
+  }
+}

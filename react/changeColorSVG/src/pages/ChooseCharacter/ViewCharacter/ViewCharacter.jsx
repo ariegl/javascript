@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import RastaNormal from "../../../assets/pages/chooseCharacter/viewCharacter/rasta/default.svg";
+import RastaNormal from "../../../assets/pages/chooseCharacter/viewCharacter/default_rasta.svg";
 
 function ViewCharacter() {
   const rastaNormal = useRef(null);

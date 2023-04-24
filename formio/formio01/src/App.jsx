@@ -21,7 +21,7 @@ function App() {
       <div className="m-auto bg-secondary p-3 rounded w-50">
         <h1 className="text-center text-white">FORM.IO</h1>
         <Form
-          src={"http://localhost:3001/useraddress"}
+          src={"https://bugzilla.ensenada.gob.mx/api/core/formulario/certificadonopropiedadticket"}
           onSubmit={handleSubmit}
           ref={formulario}
           className={"formulario"}

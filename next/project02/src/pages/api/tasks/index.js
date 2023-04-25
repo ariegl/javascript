@@ -1,5 +1,5 @@
-import {dbConnect} from '../../../utils/mongoose';
-import Task from '@/pages/models/Task';
+import {dbConnect} from '@/utils/mongoose';
+import Task from '@/models/Task';
 
 dbConnect();
 

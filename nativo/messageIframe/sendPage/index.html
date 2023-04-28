@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+    <div class="h-screen flex justify-center content-center flex-wrap">
+        <h1 class="w-full text-center text-4xl">PAGE #1</h1>
+        <h2 class="text-2xl w-full text-center my-10"> IFRAME </h2>
+        <div id="containerFrame" class="w-full flex justify-center items-center bg-gray-200">
+
+        </div>
+        <button id="openClient" onclick="openClient()" class="bg-green-400 text-white font-bold px-10 py-3 my-10 mx-3">Open Tab</button>
+        <button id="sendMessage" class="bg-blue-700 text-white font-bold px-10 py-3 my-10 mx-3">Send message</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

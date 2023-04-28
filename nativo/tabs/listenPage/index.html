@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+</head>
+<body>
+    <div class="ms-4 mt-4">
+        <h1 class="text-3xl font-bold">Escuchando:</h1>
+        <div id="msgReceived">
+
+        </div>
+    </div>
+
+    <script>
+        let msgBox = document.getElementById("msgReceived");
+
+        window.addEventListener('message', ({data}) => {
+            let parrafo = document.createElement("p");
+
+            if (Array.isArray(data)) {
+                parrafo.innerText = "[";
+                data.map((element,index) => {
+                    (index < data.length - 1) ? parrafo.innerText = parrafo.textContent + element +"," : parrafo.innerText = parrafo.textContent + element;
+                })
+                parrafo.innerText = parrafo.textContent + "]";
+            } else {
+                switch (typeof(data)) {
+                    case 'string':
+                        parrafo.innerText = data;
+                        break;
+                    case 'number':
+                        parrafo.innerText = data;
+                        break;
+                    case 'object':
+                        parrafo.innerText = "{";
+                        for(let key in data.user) {
+                            console.log(key);
+                            parrafo.innerText = parrafo.textContent + `"${key}": ${data.user[key]}`; 
+                        }
+                        parrafo.innerText = parrafo.textContent + "}";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            parrafo.classList.add("py-1");
+            msgBox.appendChild(parrafo);
+        })
+    </script>
+</body>
+</html>

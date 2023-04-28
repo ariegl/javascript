@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="h-screen flex justify-center content-center flex-wrap">
+        <h1 class="w-full text-center my-10 text-3xl font-bold">Home</h1>
+        <select id="selectMsgType" class="select select-accent w-full max-w-xs">
+            <option disabled selected>Elije algo para enviar</option>
+            <option value="string">String</option>
+            <option value="object">Objeto</option>
+            <option value="array">Arreglo</option>
+        </select>
+        <button id="btnOpen" class="btn btn-accent ms-2">OPEN</button>
+        <button id="btnSendMsg" class="btn btn-primary ms-2">SEND MSG</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

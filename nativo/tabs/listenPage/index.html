@@ -47,12 +47,7 @@
                         parrafo.innerText = data;
                         break;
                     case 'object':
-                        parrafo.innerText = "{";
-                        for(let key in data.user) {
-                            console.log(key);
-                            parrafo.innerText = parrafo.textContent + `"${key}": ${data.user[key]}`; 
-                        }
-                        parrafo.innerText = parrafo.textContent + "}";
+                        parrafo.innerText = data.stringify();
                         break;
                     default:
                         break;

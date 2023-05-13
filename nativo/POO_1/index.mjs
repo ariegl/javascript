@@ -30,7 +30,7 @@ formLogin.addEventListener('submit', async (e) => {
     console.log("res:",res);
 
     let message = `${loggedData.value} 
-    Logged: data.username is joinned `;
+    Logged: ${data.username} is joinned `;
 
     loggedData.value = message;
 });

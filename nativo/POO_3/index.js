@@ -80,11 +80,17 @@ let ducks = [];
 let namesDucks = ["Duck Pedro","Duck Tobi","Duck Morgana","Duck cena","Duck zeus","Duck Zuckerberg","Duck Moises"];
 
 const start = () => {
+    let end = false;
     generate(5,"cat");
     generate(5,"duck");
 
     cats[0].greeting();
     cats[0].showSpecs();
+
+    while(!end) {
+
+    }
+
 }
 
 const generate = (amount, type) => {
@@ -107,6 +113,10 @@ const generate = (amount, type) => {
     }
 
     type === "cat" ? console.log(`Se han generado ${counterCats} gatos`) : console.log(`Se han generado ${counterDucks} patos`);
+}
+
+const beginFight = async() => {
+
 }
 
 start();

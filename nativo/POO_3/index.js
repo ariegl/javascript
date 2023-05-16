@@ -30,10 +30,12 @@ class animal {
     }
 
     #generateSpecs() {
+        const maxLife = 20;
+        const minLife = 7;
         this.#specs = {
             atack: Math.floor((Math.random() * 10) + 1),
             def: Math.floor((Math.random() * 10) + 1),
-            life: Math.floor((Math.random() * 10) + 1)
+            life: Math.floor((Math.random() * (maxLife - minLife)) + minLife)
         }
         this.#initialize = true;
     }
@@ -52,8 +54,19 @@ class animal {
 }
 
 class Cat extends animal {
+    #habilidades;
 
     constructor(name) {
+        this.#habilidades = {
+            manazo: {
+                damage: 1,
+                time: 1200 //ms
+            },
+            colazo: {
+                damage: 2,
+                time: 1400 //ms
+            }
+        }
         super(name);
     }
 
@@ -64,8 +77,19 @@ class Cat extends animal {
 }
 
 class Duck extends animal {
+    #habilidades;
 
     constructor(name) {
+        this.#habilidades = {
+            patadaVoladora: {
+                damage: 3,
+                time: 3000 //ms
+            },
+            plumazo: {
+                damage: 1,
+                time: 1500 //ms
+            }
+        }
         super(name);
     }
 
@@ -116,7 +140,14 @@ const generate = (amount, type) => {
 }
 
 const beginFight = async() => {
+    randomBegin = Math.floor((Math.random() * 2) + 1);
 
+    if (randomBegin === 1) {
+        catSelected = Math.floor((Math.random() * cats.length));
+    } else {
+
+    }
+    
 }
 
 start();

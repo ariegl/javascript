@@ -16,8 +16,7 @@ export default async function loginHandler(req, res) {
   const token = sign(
     {
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30,
-      username: username,
-      credits: user.credits
+      username: username
     },
     "secret"
   );

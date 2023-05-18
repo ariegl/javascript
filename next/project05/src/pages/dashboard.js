@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 function Dashboard() {
   const [user, setUser] = useState({
-    credits: 0,
     username: "",
   });
   const router = useRouter();
@@ -22,8 +22,15 @@ function Dashboard() {
     }
     router.push("/login");
   };
+
+
+  useEffect(() => {
+    getProfile();
+  }, {})
+
   return (
-    <div>
+    <div className="w-full h-screen bg-gray-700 text-white flex justify-start items-start">
+      <Sidebar user={user.username}/>
       {JSON.stringify(user)}
       <button onClick={() => getProfile()}>profile</button>
       <button onClick={() => logout()}>Logout</button>

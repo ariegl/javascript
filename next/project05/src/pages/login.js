@@ -20,14 +20,14 @@ function Home() {
   };
 
   return (
-    <div className= "min-h-screen min-w-full flex justify-center items-center">
+    <div className= "min-h-screen min-w-full flex justify-center items-center bg-gray-800">
       <div className="w-1/3 flex justify-center items-center">
         <form className=" flex justify-center content-center flex-wrap" onSubmit={handleSubmit}>
-          <h1 className="w-full text-4xl text-center py-4">Login</h1>
+          <h1 className="w-full text-4xl text-center py-4 text-white">Login</h1>
           <div className="w-2/3">
             <input
               type="text"
-              className="w-full py-2 px-4 mt-2 bg-gray-900 outline-1"
+              className="w-full py-2 px-4 mt-2 bg-gray-900 outline-1 text-white"
               placeholder="user"
               onChange={(e) =>
                 setCredentials({
@@ -39,7 +39,7 @@ function Home() {
             <input
               type="password"
               placeholder="password"
-              className="w-full py-2 px-4 mt-2 bg-gray-900 outline-1"
+              className="w-full py-2 px-4 mt-2 bg-gray-900 outline-1 text-white"
               onChange={(e) =>
                 setCredentials({
                   ...credentials,

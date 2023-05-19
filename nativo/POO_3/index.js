@@ -10,9 +10,9 @@
 
 class animal {
     name;
-    #specs
-    #initialize
-    #killed
+    #specs;
+    #initialize;
+    #killed;
 
     constructor(name = '', initialize) {
         this.name = name;
@@ -51,12 +51,26 @@ class animal {
     showSpecs() {
         console.log(`${this.name} specs: ${JSON.stringify(this.#specs)}`);
     }
+
+    isKilled() {
+        return this.#killed;
+    }
+
 }
 
 class Cat extends animal {
     #habilidades;
 
     constructor(name) {
+        super(name);
+        this.generateSkills();
+    }
+
+    greeting() {
+        console.log(`${this.name} say: Miauuu...`);    
+    }
+
+    generateSkills() {
         this.#habilidades = {
             manazo: {
                 damage: 1,
@@ -67,11 +81,6 @@ class Cat extends animal {
                 time: 1400 //ms
             }
         }
-        super(name);
-    }
-
-    greeting() {
-        console.log(`${this.name} say: Miauuu...`);    
     }
 
 }
@@ -80,6 +89,15 @@ class Duck extends animal {
     #habilidades;
 
     constructor(name) {
+        super(name);
+        this.generateSkills();
+    }
+
+    greeting() {
+        console.log(`${this.name} say: Quak Quak...`);    
+    }
+
+    generateSkills() {
         this.#habilidades = {
             patadaVoladora: {
                 damage: 3,
@@ -90,11 +108,6 @@ class Duck extends animal {
                 time: 1500 //ms
             }
         }
-        super(name);
-    }
-
-    greeting() {
-        console.log(`${this.name} say: Quak Quak...`);    
     }
 }
 
@@ -107,13 +120,8 @@ const start = () => {
     let end = false;
     generate(5,"cat");
     generate(5,"duck");
-
-    cats[0].greeting();
-    cats[0].showSpecs();
-
-    while(!end) {
-
-    }
+    
+    beginFight();
 
 }
 
@@ -140,14 +148,55 @@ const generate = (amount, type) => {
 }
 
 const beginFight = async() => {
-    randomBegin = Math.floor((Math.random() * 2) + 1);
+    let randomBegin = Math.floor((Math.random() * 2) + 1);
 
-    if (randomBegin === 1) {
-        catSelected = Math.floor((Math.random() * cats.length));
-    } else {
+    let randomCatSelected = Math.floor((Math.random() * cats.length));
+    let randomDuckEnemy = Math.floor((Math.random() * ducks.length));
 
+    let randomDuckSelected = Math.floor((Math.random() * ducks.length));
+    let randomCatEnemy = Math.floor((Math.random() * cats.length));
+
+    while (cats[randomCatSelected].isKilled() === true){
+        randomCatSelected = Math.floor((Math.random() * cats.length));
     }
+
+    while (ducks[randomDuckEnemy].isKilled() === true) {
+        randomDuckEnemy = Math.floor((Math.random() * ducks.length));
+    }
+
+    while (ducks[randomDuckSelected].isKilled() === true) {
+        randomDuckSelected = Math.floor((Math.random() * ducks.length));
+    }
+
+    while (cats[randomCatEnemy].isKilled() === true) {
+        randomCatEnemy = Math.floor((Math.random() * cats.length));
+    }
+
+    const catSelected = cats[randomCatSelected];
+    const duckEnemy = ducks[randomDuckEnemy];
+
+    const duckSelected = ducks[randomDuckSelected];
+    const catEnemy = cats[randomCatEnemy];
+
+    console.log("catSelected:",catSelected);
+    catSelected.showSpecs();
+
+    console.log("duckEnemy:",duckEnemy);
+    duckEnemy.showSpecs();
     
+    console.log("duckSelected:",duckSelected);
+    duckSelected.showSpecs();
+
+    console.log("catEnemy:",catEnemy);
+    catEnemy.showSpecs();
+
+    attacked = await atack(catSelected,duckEnemy,duckSelected,catEnemy);
 }
+
+function atack(catSelected,duckEnemy,duckSelected,catEnemy) {
+
+}
+
+
 
 start();

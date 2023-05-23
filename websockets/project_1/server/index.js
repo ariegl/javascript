@@ -7,16 +7,20 @@ const app = express();
 const server = http.createServer(app);
 const io = new SocketServer(server, {
     cors: {
-        origin: "http://localhost:5173"
+        origin: "http://10.0.8.46:5173"
     }
 })
 
 // Habilita cors
 app.use(cors());
 
-// Configura el servidor para escuchar en el puerto 4000
-server.listen(3000, () => {
-  console.log('Servidor escuchando en http://localhost:3000');
+// CONFIGURACION
+const serverPort = 3000;
+const ipAddress = "10.0.8.46";
+
+// Configura el servidor para escuchar en el puerto especificado
+server.listen(serverPort, ipAddress, () => {
+  console.log('Servidor escuchando en http://'+ipAddress);
 });
 
 // Maneja las conexiones de Socket.io
@@ -28,7 +32,10 @@ io.on('connection', (socket) => {
     console.log('Mensaje recibido: ', data);
     
     // Envía el mensaje a todos los clientes conectados, excepto al remitente
-    socket.broadcast.emit('mensaje', data);
+    //socket.broadcast.emit('mensaje', data);
+    
+    // Envía el mensaje a todos los clientes
+    io.emit('mensaje', data);
   });
 
   // Maneja el evento "disconnect" cuando el cliente se desconecta

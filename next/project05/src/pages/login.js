@@ -1,61 +1,67 @@
-import axios from "axios";
+import SignUpForm from "../forms/SignUp";
+import LoginForm from "../forms/Login";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import RecoveryForm from "../forms/Recovery";
 
 function Home() {
-  const [credentials, setCredentials] = useState({
-    username: "",
-    password: "",
+  const [stateForm, setStateForm] = useState({
+    login: true,
+    signup: false,
+    recovery: false,
   });
-  const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await axios.post("/api/auth/login", credentials);
-    console.log(res);
-
-    if (res.status === 200) {
-      router.push("/dashboard");
+  const handleState = (element) => {
+    for (let index in stateForm) {
+      index == element
+        ? setStateForm((prevState) => {
+            return { ...prevState, [index]: true };
+          })
+        : setStateForm((prevState) => {
+            return { ...prevState, [index]: false };
+          });
     }
   };
 
   return (
-    <div className= "min-h-screen min-w-full flex justify-center items-center bg-gray-800">
-      <div className="w-1/3 flex justify-center items-center">
-        <form className=" flex justify-center content-center flex-wrap" onSubmit={handleSubmit}>
-          <h1 className="w-full text-4xl text-center py-4 text-white">Login</h1>
-          <div className="w-2/3">
-            <input
-              type="text"
-              className="w-full py-2 px-4 mt-2 bg-gray-900 outline-1 text-white"
-              placeholder="user"
-              onChange={(e) =>
-                setCredentials({
-                  ...credentials,
-                  username: e.target.value,
-                })
-              }
-            />
-            <input
-              type="password"
-              placeholder="password"
-              className="w-full py-2 px-4 mt-2 bg-gray-900 outline-1 text-white"
-              onChange={(e) =>
-                setCredentials({
-                  ...credentials,
-                  password: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div className="mt-4 w-full flex justify-center">
-            <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
-              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                  ENTRAR
-              </span>
+    <div className="min-h-screen min-w-full flex justify-start items-center bg-white">
+      <div className="w-3/12 min-h-screen flex flex-wrap justify-center content-center bg-slate-200">
+        {stateForm.login ? (
+          <div className="w-11/12 flex justify-center items-center">
+            <button
+              onClick={() => {
+                handleState("signup");
+              }}
+              className="w-full px-10 py-4 bg-slate-400 text-white"
+            >
+              Registrarse
             </button>
           </div>
-        </form>
+        ) : (
+          false
+        )}
+
+        {stateForm.login ? <LoginForm props={stateForm} /> : false}
+        {stateForm.signup ? <SignUpForm handleState={handleState} /> : false}
+        {stateForm.recovery ? (
+          <RecoveryForm handleState={handleState} />
+        ) : (
+          false
+        )}
+
+        {stateForm.login ? (
+          <div className="w-11/12 flex justify-center items-center">
+            <button
+              onClick={() => {
+                handleState("recovery");
+              }}
+              className="w-full px-10 py-4 bg-slate-400 text-white"
+            >
+              Olvide mi contraseña
+            </button>
+          </div>
+        ) : (
+          false
+        )}
       </div>
     </div>
   );

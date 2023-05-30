@@ -9,6 +9,7 @@ export default async function loginHandler(req, res) {
   const { username, password } = req.body;
 
   const user = await User.findOne({username,password}).lean(); //importante .lean
+  console.log(user._id);
 
   if (!user) return res.status(200).json({message: "error de credenciales"});
 

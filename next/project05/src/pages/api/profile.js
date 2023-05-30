@@ -6,9 +6,9 @@ export default function profileHandler(req, res) {
 
     try{
         const user = verify(myTokenName, 'secret');
-        return res.status(200).json({username: user.username});
+        return res.status(200).json({auth:true, username: user.username});
     }catch (error){
-        return res.status(401).json({error: "token invalido"})
+        return res.status(200).json({auth: false,msg: "token invalido"})
     }
 
     return res.json({

@@ -1,14 +1,72 @@
-import Image from 'next/image'
-import { useRouter } from 'next/router'
+import SignUpForm from "../forms/SignUp";
+import LoginForm from "../forms/Login";
+import { useState } from "react";
+import RecoveryForm from "../forms/Recovery";
+import Loader from "../components/Loader";
 
-export default function Home() {
+function Home() {
+  const [stateForm, setStateForm] = useState({
+    login: true,
+    signup: false,
+    recovery: false,
+  });
 
-  const router = useRouter();
+  const handleState = (element) => {
+    for (let index in stateForm) {
+      index == element
+        ? setStateForm((prevState) => {
+            return { ...prevState, [index]: true };
+          })
+        : setStateForm((prevState) => {
+            return { ...prevState, [index]: false };
+          });
+    }
+  };
 
   return (
-    <div className='bg-gray-700 h-screen flex justify-center items-center'>
-      <button onClick={() => {router.push("/login")}} className="bg-yellow-400 mx-3 px-8 py-2 text-black font-bold">Login</button>
-      <button onClick={() => {router.push("/signup")}} className="bg-yellow-400 mx-3 px-8 py-2 text-black font-bold">Sign up</button>
+    <div className="min-h-screen min-w-full flex justify-start items-center bg-white">
+      <div className="w-3/12 min-h-screen flex flex-wrap justify-center content-center bg-slate-200">
+        {stateForm.login ? (
+          <div className="w-11/12 flex justify-center items-center">
+            <button
+              onClick={() => {
+                handleState("signup");
+              }}
+              className="w-full px-10 py-4 bg-slate-400 text-white"
+            >
+              Registrarse
+            </button>
+          </div>
+        ) : (
+          false
+        )}
+
+        {stateForm.login ? <LoginForm props={stateForm} /> : false}
+        {stateForm.signup ? <SignUpForm handleState={handleState} /> : false}
+        {stateForm.recovery ? (
+          <RecoveryForm handleState={handleState} />
+        ) : (
+          false
+        )}
+
+        {stateForm.login ? (
+          <div className="w-11/12 flex justify-center items-center">
+            <button
+              onClick={() => {
+                handleState("recovery");
+              }}
+              className="w-full px-10 py-4 bg-slate-400 text-white"
+            >
+              Olvide mi contraseña
+            </button>
+          </div>
+        ) : (
+          false
+        )}
+      </div>
+      <h1>SECTION</h1>
     </div>
-  )
+  );
 }
+
+export default Home;

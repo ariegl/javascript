@@ -11,7 +11,11 @@ export default function App({ Component, pageProps }) {
   const isHome = router.pathname === "/";
 
   if (isLoginPage || isSignUpPage || isHome) {
-    return <Component {...pageProps}/>
+    return (
+    <FluentProvider theme={teamsLightTheme}>
+      <Component {...pageProps}/>
+    </FluentProvider>
+    )
   }
 
   return (

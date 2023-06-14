@@ -15,7 +15,7 @@ function Sidebar({user}) {
     } catch (error) {
       console.error(error.message);
     }
-    router.push("/login");
+    router.push("/");
   };
 
   useEffect(() => {

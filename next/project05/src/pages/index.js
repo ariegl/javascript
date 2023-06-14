@@ -11,6 +11,8 @@ function Home() {
     recovery: false,
   });
 
+  const [isLoading,setIsLoading] = useState(false);
+
   const handleState = (element) => {
     for (let index in stateForm) {
       index == element
@@ -26,6 +28,7 @@ function Home() {
   return (
     <div className="min-h-screen min-w-full flex justify-start items-center bg-white">
       <div className="w-3/12 min-h-screen flex flex-wrap justify-center content-center bg-slate-200">
+        <div className={`w-full min-h-screen justify-center content-center flex-wrap ${isLoading === false ? 'flex' : 'hidden'}`}>
         {stateForm.login ? (
           <div className="w-11/12 flex justify-center items-center">
             <button
@@ -41,7 +44,7 @@ function Home() {
           false
         )}
 
-        {stateForm.login ? <LoginForm props={stateForm} /> : false}
+        {stateForm.login ? <LoginForm props={stateForm} setIsLoading={setIsLoading} /> : false}
         {stateForm.signup ? <SignUpForm handleState={handleState} /> : false}
         {stateForm.recovery ? (
           <RecoveryForm handleState={handleState} />
@@ -63,8 +66,14 @@ function Home() {
         ) : (
           false
         )}
+        </div>
+        <div className={`${isLoading === true ? 'flex' : 'hidden'}`}>
+          <Loader/>
+        </div>
       </div>
-      <h1>SECTION</h1>
+      <div className="w-9/12 min-h-screen flex justify-center items-center">
+        <h1>SECTION</h1>
+      </div>
     </div>
   );
 }

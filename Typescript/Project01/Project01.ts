@@ -10,7 +10,7 @@ function printName({name, age} : {name:string, age:number}) {
 printName({name: nombre, age:edad});
 
 
-/*FUNCIONES CON RETORNO*/
+/*FUNCIONES CON RETORNO */
 function myReturnFunction({text} : {text:string}) : string {
     let newString = text + "New String";
 

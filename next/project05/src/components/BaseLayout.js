@@ -27,12 +27,12 @@ function BaseLayout({children}) {
     }
 
   return (
-    <div className="w-full h-screen bg-gray-700 text-white flex justify-start items-start">
+    <div className="w-full min-h-screen h-screen bg-gray-700 text-white flex justify-start items-start">
 
         {loaded ? 
             <>
                 <Sidebar user={user.username}/>
-                <div className="bg-gray-200 w-full h-screen text-black flex justify-start items-start">
+                <div className="bg-gray-200 w-full min-h-screen h-auto text-black flex justify-start items-start">
                     {children}
                 </div>
             </>

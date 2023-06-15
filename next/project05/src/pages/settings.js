@@ -3,7 +3,9 @@ import React from 'react'
 
 function settings() {
   return (
-    <UserSettingsForm/>
+    <div className='flex justify-center items-start w-full h-screen'>
+      <UserSettingsForm/>
+    </div>
   )
 }
 

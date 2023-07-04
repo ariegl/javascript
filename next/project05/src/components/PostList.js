@@ -2,6 +2,7 @@ import React, {useRef, useEffect, useState} from "react";
 import { Avatar } from "@fluentui/react-components";
 import axios from "axios";
 import SendIcon from '@mui/icons-material/Send';
+import SkeletonPost from "../skeletons/posts/skeletonPost";
 
 function Card(props) {
     const {author, date, description, title, commentsActive, image} = props;
@@ -70,7 +71,7 @@ function PostList() {
 
         if(res.status === 200) {
           setPosts(res.data.data);
-          setIsLoading(false);
+          //setIsLoading(false);
           console.log(res.data.data);
         }
 
@@ -87,10 +88,10 @@ function PostList() {
       {
         isLoading === false ? (
           posts.map((element,index) => (
-            <Card author={element.author} date={element.date} description={element.description} title={element.title} commentsActive={element.commentsActive} image={element.image}/>
+            <Card key={`card-post-${index}`} author={element.author} date={element.date} description={element.description} title={element.title} commentsActive={element.commentsActive} image={element.image}/>
           ))
         ) : (
-          false
+          <SkeletonPost/>
         )
       }
     </div>

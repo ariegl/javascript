@@ -43,6 +43,18 @@ export default function Home() {
           {firstForm.touched.firstName && firstForm.errors.firstName ? (
             <div>{firstForm.errors.firstName}</div>
           ) : null}
+          <label htmlFor="lastName">Last Name</label>
+          <input id="lastName" type="text" {...firstForm.getFieldProps('lastName')} />
+          {firstForm.touched.lastName && firstForm.errors.lastName ? (
+            <div>{firstForm.errors.lastName}</div>
+          ) : null}
+          <label htmlFor="email">Email Address</label>
+          <input id="email" type="email" {...firstForm.getFieldProps('email')} />
+          {firstForm.touched.email && firstForm.errors.email ? (
+            <div>{firstForm.errors.email}</div>
+          ) : null}
+    
+          <button type="submit">Submit</button>
       </form>
     </main>
   )

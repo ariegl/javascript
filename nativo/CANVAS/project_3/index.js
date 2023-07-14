@@ -18,13 +18,26 @@ let groundColisionCharacter = canvas.clientHeight - groundHeight - sizeCharacter
 //ACTUALIZACION DEL OBJETO
 function updateObject() {
     //actualizar la posicion y la velocidad
+    velocity.x = 0;
+    //acceleration.x = 5; //VELOCIDAD A LA QUE SE MUEVE EL PERSONAJE
+
+    //BUG ARREGLADO DETECTA LA ULTIMA TECLA PRESIONADA PARA MOVER EL PERSONAJE
+    if(keys.a.pressed && keys.d.pressed) {
+        if(keys.lastMoveX.key === "a") velocity.x = -5;
+        else if(keys.lastMoveX.key === "d") velocity.x = 5;
+    } else {
+        if(keys.d.pressed) velocity.x = 5;
+        else if (keys.a.pressed) velocity.x = -5;
+    }
+
     position.x += velocity.x;
+    //velocity.x += acceleration.x; 
+
     position.y += velocity.y;
-    velocity.x += acceleration.x;
-    velocity.y += acceleration.y;
+    velocity.y += acceleration.y;   
 
     //deteccion de colision con el suelo
-    if (position.y > groundColisionCharacter) {
+    if (position.y >= groundColisionCharacter) {
         //Ajustar la posicion
         position.y = groundColisionCharacter;
         velocity.y = 0;
@@ -59,26 +72,49 @@ function drawObject() {
     ctx.fillRect(position.x, position.y, sizeCharacter.x, sizeCharacter.y);
 }
 
+const keys = {
+    w: {
+        pressed: false,
+    },
+    a: {
+        pressed: false,
+    },
+    d: {
+        pressed: false,
+    },
+    lastMoveX: {
+        key: "",
+    }
+}
+
+window.addEventListener('keydown',(event) => {
+    switch(event.key){
+        case 'w':
+            (velocity.y === 0) ? velocity.y = -5 : false;
+            break;
+        case 'a':
+            keys.a.pressed = true;
+            keys.lastMoveX.key = "a";
+            break;
+        case 'd':
+            keys.d.pressed = true;
+            keys.lastMoveX.key = "d";
+            break;
+    }
+})
+
+window.addEventListener('keyup',(event) => {
+    switch(event.key){
+        case 'a':
+            keys.a.pressed = false;
+            break;
+        case 'd':
+            keys.d.pressed = false;
+            break;
+    }
+})
+
 //MOVIMIENTO DEL OBJETO CON EL TECLADO
-document.addEventListener("keydown", (event) => {
-    //MOVER A LA IZQUIERDA
-    if(event.key === "a" || event.key === "ArrowLeft"){
-        velocity.x = -5;
-    }
-
-    //MOVER A LA DERECHA
-    else if(event.key === "d" || event.key === "ArrowRight") {
-        velocity.x = 5;
-    }
-})
-
-//PARAR OBJETO
-document.addEventListener("keyup", (event) => {
-    if(event.key === "a" || event.key === "ArrowLeft" || event.key === "d" || event.key === "ArrowRight") {
-        velocity.x = 0;
-    }
-})
-
 
 function animate() {
     updateObject();

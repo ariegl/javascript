@@ -1,0 +1,1 @@
+Este proyecto realiza pruebas unitarias, utilizando POO con typescript.

@@ -9,3 +9,5 @@ let getEmail: string = user.getEmail();
 console.log("Email:",getEmail);
 
 user.greeting();
+
+export default user;

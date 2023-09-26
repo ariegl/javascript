@@ -1,0 +1,1 @@
+Este es un proyecto de prueba utilizando JSDocs y configurando una plantilla.

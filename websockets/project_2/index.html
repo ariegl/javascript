@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transmisión de Audio</title>
+</head>
+<body>
+    <button id="play-button">PLAY</button>
+<script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+<script>
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const audioElement = document.getElementById('audio-element'); // Puedes usar un elemento <audio> o crear un nodo de audio en Web Audio API
+
+const socket = io('https://mjmssh48-3000.usw3.devtunnels.ms');
+
+let isAudioContextResumed = false;
+
+document.getElementById('play-button').addEventListener('click', () => {
+  // Resumir el contexto de audio en respuesta al gesto del usuario
+  if (!isAudioContextResumed) {
+    audioContext.resume().then(() => {
+      isAudioContextResumed = true;
+      console.log('AudioContext resumido correctamente');
+
+      // Enviar mensaje al servidor indicando que el cliente está listo
+      socket.emit('clientReady');
+    });
+  }
+});
+
+socket.on('audio', (audioData) => {
+  audioContext.decodeAudioData(audioData, (buffer) => {
+    const source = audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(audioContext.destination);
+
+    // Escuchar el evento para comenzar la reproducción
+    socket.on('startPlayback', () => {
+      source.start();
+    });
+  }, (error) => {
+    console.error('Error decoding audio data:', error);
+  });
+});
+
+</script>
+</body>
+</html>

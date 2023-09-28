@@ -6,17 +6,18 @@ const entidades = ["AS","BC","BS","CC","CL","CM","CS","CH","DF","DG","GT","GR","
 const convertMayus = ["name","firstLastName","secondLastName","stringCurp"];
 
 function main() {
-    /*
+    
+    
     let data = {
-        name: 'enrique',
-        firstLastName: 'peña',
+        name: 'ENRIQUE',
+        firstLastName: 'PEÑA',
         email: 'as@gmail.com',
         password: 'Admin#2021',
-        secondLastName: 'nieto',
+        secondLastName: 'NIETO',
         emailVerification: 'as@gmail.com',
         passwordValidation: 'Admin#2021',
-        birthday: '20/07/1966',
-        stringCurp: 'PXNE660720HMCXTN06',
+        birthday: '27/03/1999',
+        stringCurp: 'PXNE990327HMCXTN06',
         street: '',
         interiorNumber: '',
         colony: '',
@@ -31,7 +32,8 @@ function main() {
         curp: [],
         documentAddress: []
       }
-    */
+    
+    
     let datosUsuario = {
         ...data
     }
@@ -47,6 +49,7 @@ function main() {
     if(verification?.validate?.allowed) {
         return valid = true;
     } else {
+        //console.log(verification?.validate?.errors[0]);
         return valid = verification?.validate?.errors[0];
     }
     
@@ -61,27 +64,38 @@ function generateCurp(dataUser) {
         secondLastName: [],
         firstName: []
     }
+
+    let validate = "";
+
+    //ELIMINAMOS TODAS LAS PREPOSICIONES
+    let resultName = preposicionDetect(dataUser.name);
+    let resultFirstLastName = preposicionDetect(dataUser.firstLastName);
+    let resultSecondLastName = preposicionDetect(dataUser.secondLastName);
     
     while(generalFlag) {       
         switch(step) { /*En base a las reglas para generar un CURP*/
             case "one": //PRIMERA LETRA DEL APELLIDO
-                CURP.push(dataUser.firstLastName.substring(0,1));
+                CURP.push(resultFirstLastName.substring(0,1));
                 used.firstLastName.push(0);
                 step = "two";
                 break;
             case "two": //PRIMERA VOCAL DEL PRIMER APELLIDO
-                let found = foundFirstVocal(dataUser.firstLastName)
+                let found = foundFirstVocal(dataUser.firstLastName);
                 used.firstLastName.push(found.counter);
                 CURP.push(found.vocal);
                 step = "three";
                 break;
             case "three": //PRIMERA LETRA SEGUNDO APELLIDO
-                CURP.push(dataUser.secondLastName.substring(0,1));
+                if(dataUser.secondLastName === "")
+                    CURP.push("X");
+                else
+                    CURP.push(resultSecondLastName.substring(0,1));
+
                 used.secondLastName.push(0);
                 step = "four";
                 break;
             case "four": //PRIMERA LETRA PRIMER NOMBRE !NO MARIA !NO JOSE
-                CURP.push(validateName(dataUser.name));
+                CURP.push(validateName(resultName));
                 used.firstName.push(0);
                 step = "five";
                 break;
@@ -125,10 +139,10 @@ function generateCurp(dataUser) {
                 break;
             case "validateCurp":
                 validate = validateCurp(CURP.join(""), dataUser.stringCurp, CURP);
-                /*console.log("Allowed:",validate.allowed);
+                console.log("Allowed:",validate.allowed);
                 console.log("errors:",validate.errors);
                 console.log("message:",validate.message);
-                console.log("Curp:",validate.curpFinal);*/
+                console.log("Curp:",validate.curpFinal);
                 step = "end";
                 break;
         }
@@ -139,6 +153,20 @@ function generateCurp(dataUser) {
     return {CURP, validate};
 }
 
+function preposicionDetect(word) {
+    let text = word;
+
+    preposiciones.forEach(element => {
+        if( (text.search(" "+element+" ") >= 0) || (text.search(element+" ") >= 0) ){
+        text = text.replace(element,"");
+        text = text.replace(/\s+/g, ' ');
+        }
+    })
+
+    text = text.trim();
+    return text;
+}
+
 function foundFirstVocal(word) {
     let counter = 0;
     let vocal = "";
@@ -146,7 +174,7 @@ function foundFirstVocal(word) {
     while(counter < word.length) {
         let letter = word.substring(counter,counter+1);
 
-        if(vocales.includes(letter)){
+        if(vocales.includes(letter) && counter !== 0){
             vocal = letter;
             break;
         }
@@ -164,7 +192,7 @@ function validateName(name) {
 
     let letter = "";
 
-    if (!nombresIgnorar.includes(firstName)){
+    if (!nombresIgnorar.includes(firstName) || secondName === undefined){
         letter = firstName.substring(0,1);
     } else {
         letter = secondName.substring(0,1);
@@ -174,6 +202,8 @@ function validateName(name) {
 }
 
 function validateGenero(curp) {
+    let letter = "";
+
     curp.length === 18 ? (
         letter = curp.substring(10,11)
     ) : (letter = "X");
@@ -186,6 +216,8 @@ function validateGenero(curp) {
 }
 
 function validateEntity(curp) {
+    let entity = "";
+    let valid = "";
 
     if (curp.length === 18) {
         entity = curp.substring(11,13); 
@@ -262,7 +294,9 @@ function validateCurp(curpGenerate, inputCurp, arrayCurp) {
 
     return {message,allowed,errors,curpFinal};
 
-    function validateWordsAllowed(curp) { /*VALIDA QUE LA PALABRA FORMADA NO SEA GROSERIA*/
+    function validateWordsAllowed(curp) { //VALIDA QUE LA PALABRA FORMADA NO SEA GROSERIA
+        let section = "";
+        let found = "";
         section = curp.substring(0,4);
 
         //VERIFICAMOS SI COTIENE PALABRAS ALTISONANTES
@@ -271,14 +305,17 @@ function validateCurp(curpGenerate, inputCurp, arrayCurp) {
             arrayCurp[found.counter] = "X";
         }
 
-        /*VERIFICAMOS SI CONTIENE LETRAS Ñ*/
+        //VERIFICAMOS SI CONTIENE LETRAS Ñ
         found = foundSpecialCharacters(curpGenerate);
 
-        found.found ? arrayCurp[found.counter] = "X" : false;
+        if(found.found) {
+            arrayCurp[found.counter] = "X"
+        }
+
         return arrayCurp.join("");
     }
 
-    function foundSpecialCharacters(word) { /*VERIFICA SI LA CURP CONTIENE Ñ*/
+    function foundSpecialCharacters(word) { //VERIFICA SI LA CURP CONTIENE Ñ
         let counter = 0;
         let found = false;
     

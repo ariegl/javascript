@@ -6,12 +6,12 @@ export function Draggable(props) {
     id: props.id,
   });
   const style = transform ? {
-    transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+    transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`
   } : undefined;
 
   
   return (
-    <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <button className='py-2 my-1 px-4 mx-2 bg-green-600' ref={setNodeRef} style={style} {...listeners} {...attributes}>
       {props.children}
     </button>
   );

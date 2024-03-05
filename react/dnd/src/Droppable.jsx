@@ -23,3 +23,16 @@ export function Droppable(props) {
     </div>
   );
 }
+
+export function DroppableTrashArea(props) {
+  const {isOver, setNodeRef} = useDroppable({
+    id: props.id,
+  });
+  
+  
+  return (
+    <div ref={setNodeRef} className='droppable-trash absolute bottom-0 w-24 h-24 bg-red-800 mb-3 flex justify-center items-center'>
+      {props.children}
+    </div>
+  );
+}

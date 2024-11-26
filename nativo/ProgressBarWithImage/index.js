@@ -41,7 +41,7 @@ const imgLoad = () => {
             console.log("CARGADO:",pe.loaded);
             console.log("PORCENTAJE:",progress);
             progress = Math.floor((pe.loaded/pe.total)*100);
-            progressbar.style.width = `${cargado}%`;
+            progressbar.style.width = `${progress}%`;
         };
 
         request.onload = () => {
